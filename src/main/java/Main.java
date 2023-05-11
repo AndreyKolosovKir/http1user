@@ -9,6 +9,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -35,7 +36,8 @@ public class Main {
                 new TypeReference<>() {
                 }
         );
-        users.forEach(System.out::println);
+        users.stream().filter(value -> value.getUpvotes() != null && Integer.parseInt(value.getUpvotes()) > 0).forEach(System.out::println);
+
 
         response.close();
 
